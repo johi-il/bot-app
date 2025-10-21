@@ -1,16 +1,86 @@
-# React + Vite
+# Bot Army React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple React application for managing a collection of bots.  
+Users can view all available bots, enlist bots into their personal army, release them, or permanently discharge them from service.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **View All Bots:**  
+  Fetches and displays a list of bots from a backend API.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Add to Army:**  
+  Click on any bot in the collection to add it to your personal army.  
+  A bot can only be added once.
 
-## Expanding the ESLint configuration
+- **Release a Bot:**  
+  Click on a bot in your army to release it.  
+  This removes the bot from the army but keeps it in the main collection.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Discharge a Bot:**  
+  Click the red "x" button on a bot in your army to permanently remove it from both the backend and the frontend.
+
+---
+
+## Project Structure
+
+src/
+│
+├── components/
+│ ├── App.js
+│ ├── BotCollection.js
+│ ├── BotCollectionChild.js
+│ ├── YourBotArmy.js
+│ └── db.json
+│
+├── index.js
+└── App.css
+
+---
+
+## API Endpoints
+
+The application uses a simple JSON server for its backend.
+
+DELETE /bots/:id
+Removes a bot from the backend.
+
+Example response:
+
+{}
+
+Installation and Setup
+
+    Clone this repository:
+
+git clone https://github.com/johi-il/bot-app
+cd bot-army
+
+Install dependencies:
+
+npm install
+
+Start the JSON server:
+
+json-server --watch src/components/db.json --port 3000
+
+Run the React app:
+
+npm start
+
+Open your browser and visit:
+
+    http://localhost:5173
+
+    (or whatever port your React app uses)
+
+### How It Works
+
+    The App component manages the state for both the full bot list (bots) and the user’s army (army).
+
+    BotCollection fetches bot data from the backend and renders each bot using the BotCollectionChild component.
+
+    YourBotArmy displays the user’s selected bots.
+
+    The onAddBot, onReleaseBot, and onDischargeBot functions handle the interaction logic.

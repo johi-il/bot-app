@@ -41,6 +41,7 @@
 }
 
 .your-bot-army > div {
+    position: relative;
   border: 1px solid #33ff00;
   border-radius: 8px;
   padding:5px;
@@ -59,7 +60,10 @@
 .your-bot-army > div:hover {
     transform: scale(1.02);
 }
-
+.your-bot-army button{
+    margin-top: 5px;
+    position: absolute;
+}
 
 
 
